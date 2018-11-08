@@ -11,24 +11,30 @@
 <body>
     
     <!-- Main game -->
-    <div class="game">
-        <div class="guess"></div>
+    <div class="container gameContainer">
+        <div class="header" >
+
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 gameStats">
+                    <span id="gameStats"><h1></h1></span>
+                </div>
+            </div>
+        </div>
+        <div class ="jumbotron">
+        <div class="container gameField">
         <form class="guessForm"> <!-- Collect user input here, limit it to 1 char-->
-            <input type="text" class="guessLetter" maxlength="1"
+        <input type="text" class="guessLetter" maxlength="1"
             placeholder="Enter a letter... &#x23ce;"/> 
-            <button type="submit"
-            class="guessButton">Guess</button>
+            <button type="button"
+            class="btn btn-primary btn-lg guessButton">Guess</button>
         </form>
         <!-- wrong letters -->
         <div class="wrong">
             <div class="wrongLetters"></div>
 
         </div>
-
-        <div class="message">
-            <h1 class="title"></h1>
-        </div>
-        
+</div>        
 
 
 

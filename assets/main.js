@@ -1,3 +1,11 @@
+// event listener for the button
+var playerInput = "";
+document.getElementById("guessButton").addEventListener("click", function(){
+   var playerInput = document.getElementById("guessLetter");
+});
+
+
+
 // gameState Object===========
     var gameState = {
     //  variables ============
@@ -41,8 +49,6 @@
             lettersArrayLength = [" "];
             lettersArray.push("_ ");
         }
-
-
     },
 
 
