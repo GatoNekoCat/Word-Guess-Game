@@ -1,28 +1,25 @@
-// event listener for the button
-var playerInput = "";
-document.getElementById("guessButton").addEventListener("click", function(){
-   var playerInput = document.getElementById("guessLetter");
-});
+// guessButton listener
+document.getElementById("guessButton").onclick = function() {gameState.getPlayerInput()};
+// gameState Object===========    
 
-
-
-// gameState Object===========
     var gameState = {
     //  variables ============
         wins: 0,
         gameStateOn: false,
-        guessesLeft: 0,
+        guessesLeft: 12,
         lettersGuessed: "",
         wordBankArray: [
             "son goku","bulma","master roshi",
             "krillin","piccolo","son gohan","tenshinhan", "namek", "freiza",
-            "bardock", "vegeta",
+            "bardock", "vegeta", "brolly", "paragus", "videl"
             ],
     // =================================================================
 
 
 // 
-//   *** Functions
+//   *** Functions    
+    
+
     // Choose a random word ***is now returning the whole array??**
     chooseRandomWord: function() {
         var randWord = gameState.wordBankArray[Math.floor(Math.random() * gameState.wordBankArray.length)];
@@ -51,6 +48,24 @@ document.getElementById("guessButton").addEventListener("click", function(){
         }
     },
 
+    // Need to display the lettersArray to id="textField"
+    textPusher: function (tArray) {
+        tArray.forEach(function(element) {
+            tArray.push (document.getElementById("textField").value) 
+        });
+    },
+
+
+    //  listener should call this
+    // Takes user input from the button ***returning "" ***
+    getPlayerInput: function(){
+        var playerInput = document.getElementById("guessLetter").textContent;
+        console.log(playerInput);
+
+        // After getting input the game should check whether the input matches a letter 
+        // in the lettersArray
+    },
+    
 
         
     // }
@@ -59,16 +74,3 @@ document.getElementById("guessButton").addEventListener("click", function(){
 
 // end of gameState object
 };
-
-// var word = gameState.chooseRandomWord(gameState.wordBankArray) ;
-
-// console.log(word);
-
-
-// gameState.onkeypress = gameOn() {
-//     gameState.gameStateOn = true;
-
-
-// };
-
-// gameState.onkeypress = function(){myScript};

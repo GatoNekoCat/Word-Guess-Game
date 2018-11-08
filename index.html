@@ -6,41 +6,56 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
-    <script src="assets/main.js"></script>
+    <script async src="assets/main.js"></script>
+
 </head>
 <body>
     
     <!-- Main game -->
     <div class="container gameContainer">
+
         <div class="header" >
 
             <div class="row">
-                <div class="col-md-4"></div>
+                <div class="col-md-5"></div>
                 <div class="col-md-4 gameStats">
                     <span id="gameStats"><h1></h1></span>
                 </div>
             </div>
         </div>
+        <div class="row">
         <div class ="jumbotron">
-        <div class="container gameField">
-        <form class="guessForm"> <!-- Collect user input here, limit it to 1 char-->
-        <input type="text" class="guessLetter" maxlength="1"
-            placeholder="Enter a letter... &#x23ce;"/> 
-            <button type="button"
-            class="btn btn-primary btn-lg guessButton">Guess</button>
-        </form>
-        <!-- wrong letters -->
-        <div class="wrong">
-            <div class="wrongLetters"></div>
-
+            <div class="gameField">
+                <!-- Game card -->
+            <div class="card text-center">
+                <div class="card-header">
+                  <h1 id="hintText">Hint goes here</h1>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Dragonball Word Guess</h5>
+                  <p class="card-text" id="textField">Hangman playfield goes here</p>
+                  <form class="guessForm"> <!-- Collect user input here, limit it to 1 char-->
+                    <input type="text" id="guessLetter" maxlength="1"
+                        placeholder="Enter a letter..."/> 
+                        <button type="button"
+                        
+                        class="btn btn-primary btn-lg" id="guessButton">Guess</button>
+            
+                    </form>            
+                </div>
+                <div class="card-footer text-muted">
+                 <h4 id="wrongLetters"> Wrong letters go here</h4> 2 days ago
+                </div>
+              </div>
+            </div>
         </div>
-</div>        
+        </div>        
+
+        
 
 
 
 
-
-
-    </div>
+    </div>    
 </body>
 </html>
