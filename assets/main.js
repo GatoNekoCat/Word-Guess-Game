@@ -8,7 +8,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     //  variables ============
         wins: 0,
         gameStateOn: false,
-        guessesLeft: 12,
+        playerGuessesLeft: 12,
         lettersGuessed: "",
         wordBankArray: [
             "son goku","bulma","master roshi",
@@ -17,6 +17,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
             ],
         randWord: "",
         lettersArray: [],
+        playerLetterGuess: "",
 
     // =================================================================
 
@@ -46,7 +47,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     //  This will take in an array of letters from the lettersGetter and Produce 
     //   an underscore on the screen for each index in the array.
     textPlaceHolder: function(lettersArray){
-        var newArray = [" "];
+        var newArray = [];
         for (i = 0; i < lettersArray.length;i++){
             
             newArray.push("_ ");
@@ -77,7 +78,35 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     //  listener should call this
     // Takes user input from the button ***returning "" ***
     getPlayerInput: function(){
-        var playerInput = document.getElementById("guessLetter").value;
+        this.playerLetterGuess = document.getElementById("guessLetter").value;
+            console.log(this.playerLetterGuess);
+            // need to clear the textField after getting input
+            document.getElementById("guessLetter").value = "";
+
+            
+            // Check input against lettersArray
+            if (gameWord.indexOf(this.playerLetterGuess) >= 0){
+                alert("Success");
+            // Push the playerLetterGuess into the the nArray where
+            for (let i = nArray.length - 1; i >= 0; i--){
+                if(gameWord[i] === this.playerLetterGuess){
+                    nArray.splice(i, 1, this.playerLetterGuess );
+                }
+            }
+            }
+
+            
+            // lettersArray.forEach(function(ltr) {
+            //     console.log(ltr);
+            //     if(playerLetterGuess === ltr){
+            //         alert("Success");
+            //     }
+                
+            // });
+
+            // If there is a match update nArray
+
+            // If no match decrease playerGuessesLeft
 
         },
     
@@ -98,6 +127,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 var gameWord = gameState.chooseRandomWord();
 var lettersArray = gameState.lettersGetter(gameWord);
 var nArray = gameState.textPlaceHolder(lettersArray);
+var playerInput = gameState.getPlayerInput();
 // var playerInput = gameState.
 // Old textPlaceHolder will remove soon
 // // textPlaceHolder takes in lettersArray and then for each letter, or element in the array
