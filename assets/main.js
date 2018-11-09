@@ -45,12 +45,13 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     //  This will take in an array of letters from the lettersGetter and Produce 
     //   a blank space on the screen for each index in the array.
     textPlaceHolder: function(lettersArray){
-        
+        var newArray = [" "];
         for (i = 0; i < lettersArray.length;i++){
-            lettersArray = [" "];
-            return lettersArray.push("_ ");
+            
+            newArray.push("_ ");
             
         }
+        return newArray;
     },
     // I want it to be an array because I will check player guesses with a foreach method
 
@@ -70,11 +71,15 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 
         // After getting input the game should check whether the input matches a letter 
         // in the lettersArray
+    
+
+    
     },
     
 
         
     // }
+    
 
 
 
@@ -84,9 +89,14 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 // load in a word with the page
 var gameWord = gameState.chooseRandomWord();
 var lettersArray = gameState.lettersGetter(gameWord);
+// textPlaceHolder takes in lettersArray and then for each letter, or element in the array
+// it should....
 var textPlaceHolder = lettersArray.forEach(function(element){
     console.log(element)
-    var textPlaceHolder = [""]
+    // create a variable array
+    var textPlaceHolder = [""];
+    // add another the array with an underscore
     textPlaceHolder.push(" _");
 });
+
 
