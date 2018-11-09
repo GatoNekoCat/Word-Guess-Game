@@ -1,5 +1,7 @@
 // guessButton listener
 document.getElementById("guessButton").onclick = function() {gameState.getPlayerInput()};
+//  Load a random word on load
+
 // gameState Object===========    
 
     var gameState = {
@@ -20,12 +22,31 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 //   *** Functions    
     
 
-    // Choose a random word ***is now returning the whole array??**
+    // Choose a random word 
     chooseRandomWord: function() {
         var randWord = gameState.wordBankArray[Math.floor(Math.random() * gameState.wordBankArray.length)];
 
-        return this.wordBankArray;
+        return randWord;
     },
+
+    // ****I want to start the game automatically when the page loads. 
+    //      need chooseRandomWord to load when the page loads
+
+
+
+    // // Start the game when the enter button is pressed
+    // // Get input field
+    // ekey: document.getElementById("ekey"),
+    // // Execute function on enter
+    // ekey: this.ekey.addEventListener("key up", function(event){
+    //     event.preventDefault();
+    //     if (event.keyCode === 13) {
+    //         this.chooseRandomWord();
+    //     }
+
+    // }),
+    
+
 
     // lettersGetter gets letters from the word
     lettersGetter: function(word){
@@ -33,7 +54,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
         for(var i = 0; i < word.length; i++){
             letters.push({
                 letter: word[i],
-                pos: i
+                pos: i,
             });
         }
         return letters;
@@ -74,3 +95,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 
 // end of gameState object
 };
+
+// load in a word with the page
+var gameWord = gameState.chooseRandomWord();
+var lettersArray = gameState.lettersGetter(gameWord);
