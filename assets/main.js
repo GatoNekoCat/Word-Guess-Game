@@ -15,6 +15,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
             "krillin","piccolo","son gohan","tenshinhan", "namek", "freiza",
             "bardock", "vegeta", "brolly", "paragus", "videl"
             ],
+
     // =================================================================
 
 
@@ -58,12 +59,13 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     // Need to display the lettersArray to id="textField"
     textField: document.getElementById("textField"),
      
-    textDisplay: function (tArray) {
-        tArray.forEach(function(element) {
-            console.log(element);
+    textArrayToString: function (tArray) {
+        var tString = tArray.forEach(function(element) {
+            var newString = element + tString;
+            tString = newString;
             
-            // this.textField.insertAdjacentHTML("beforeend",element);
-        });
+        });          
+
     },
 
 
@@ -92,6 +94,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 var gameWord = gameState.chooseRandomWord();
 var lettersArray = gameState.lettersGetter(gameWord);
 var nArray = gameState.textPlaceHolder(lettersArray);
+gameState.textPlaceHolder(nArray);
 
 // Old textPlaceHolder will remove soon
 // // textPlaceHolder takes in lettersArray and then for each letter, or element in the array
