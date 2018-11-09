@@ -29,24 +29,6 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
         return randWord;
     },
 
-    // ****I want to start the game automatically when the page loads. 
-    //      need chooseRandomWord to load when the page loads
-
-
-
-    // // Start the game when the enter button is pressed
-    // // Get input field
-    // ekey: document.getElementById("ekey"),
-    // // Execute function on enter
-    // ekey: this.ekey.addEventListener("key up", function(event){
-    //     event.preventDefault();
-    //     if (event.keyCode === 13) {
-    //         this.chooseRandomWord();
-    //     }
-
-    // }),
-    
-
 
     // lettersGetter gets letters from the word
     lettersGetter: function(word){
@@ -63,11 +45,14 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     //  This will take in an array of letters from the lettersGetter and Produce 
     //   a blank space on the screen for each index in the array.
     textPlaceHolder: function(lettersArray){
+        
         for (i = 0; i < lettersArray.length;i++){
-            lettersArrayLength = [" "];
-            lettersArray.push("_ ");
+            lettersArray = [" "];
+            return lettersArray.push("_ ");
+            
         }
     },
+    // I want it to be an array because I will check player guesses with a foreach method
 
     // Need to display the lettersArray to id="textField"
     textPusher: function (tArray) {
@@ -99,3 +84,9 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 // load in a word with the page
 var gameWord = gameState.chooseRandomWord();
 var lettersArray = gameState.lettersGetter(gameWord);
+var textPlaceHolder = lettersArray.forEach(function(element){
+    console.log(element)
+    var textPlaceHolder = [""]
+    textPlaceHolder.push(" _");
+});
+
