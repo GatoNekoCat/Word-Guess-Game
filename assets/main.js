@@ -56,9 +56,13 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     // I want it to be an array because I will check player guesses with a foreach method
 
     // Need to display the lettersArray to id="textField"
-    textPusher: function (tArray) {
+    textField: document.getElementById("textField"),
+     
+    textDisplay: function (tArray) {
         tArray.forEach(function(element) {
-            tArray.push (document.getElementById("textField").value) 
+            console.log(element);
+            
+            // this.textField.insertAdjacentHTML("beforeend",element);
         });
     },
 
@@ -69,12 +73,10 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
         var playerInput = document.getElementById("guessLetter").textContent;
         console.log(playerInput);
 
+        },
+    
         // After getting input the game should check whether the input matches a letter 
-        // in the lettersArray
-    
-
-    
-    },
+        // in the lettersArray   
     
 
         
@@ -89,14 +91,17 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 // load in a word with the page
 var gameWord = gameState.chooseRandomWord();
 var lettersArray = gameState.lettersGetter(gameWord);
-// textPlaceHolder takes in lettersArray and then for each letter, or element in the array
-// it should....
-var textPlaceHolder = lettersArray.forEach(function(element){
-    console.log(element)
-    // create a variable array
-    var textPlaceHolder = [""];
-    // add another the array with an underscore
-    textPlaceHolder.push(" _");
-});
+var nArray = gameState.textPlaceHolder(lettersArray);
+
+// Old textPlaceHolder will remove soon
+// // textPlaceHolder takes in lettersArray and then for each letter, or element in the array
+// // it should....
+// var textPlaceHolder = lettersArray.forEach(function(element){
+//     console.log(element)
+//     // create a variable array
+//     var textPlaceHolder = [""];
+//     // add another the array with an underscore
+//     textPlaceHolder.push(" _");
+// });
 
 
