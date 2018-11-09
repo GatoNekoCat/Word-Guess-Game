@@ -15,6 +15,8 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
             "krillin","piccolo","son gohan","tenshinhan", "namek", "freiza",
             "bardock", "vegeta", "brolly", "paragus", "videl"
             ],
+        randWord: "",
+        lettersArray: [],
 
     // =================================================================
 
@@ -26,10 +28,8 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     // Choose a random word 
     chooseRandomWord: function() {
         var randWord = gameState.wordBankArray[Math.floor(Math.random() * gameState.wordBankArray.length)];
-
         return randWord;
     },
-
 
     // lettersGetter gets letters from the word
     lettersGetter: function(word){
@@ -44,7 +44,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     },
 
     //  This will take in an array of letters from the lettersGetter and Produce 
-    //   a blank space on the screen for each index in the array.
+    //   an underscore on the screen for each index in the array.
     textPlaceHolder: function(lettersArray){
         var newArray = [" "];
         for (i = 0; i < lettersArray.length;i++){
@@ -57,7 +57,12 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     // I want it to be an array because I will check player guesses with a foreach method
 
     // Need to display the lettersArray to id="textField"
+    // textField stores the html element
     textField: document.getElementById("textField"),
+    textDisplay:function(textToDisplay) {
+        textField.innerHTML = ("<h1>" + textToDisplay.join(" ") + "</h1>");
+
+    },
      
     textArrayToString: function (tArray) {
         var tString = tArray.forEach(function(element) {
@@ -72,8 +77,7 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     //  listener should call this
     // Takes user input from the button ***returning "" ***
     getPlayerInput: function(){
-        var playerInput = document.getElementById("guessLetter").textContent;
-        console.log(playerInput);
+        var playerInput = document.getElementById("guessLetter").value;
 
         },
     
@@ -83,19 +87,18 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 
         
     // }
+
     
 
 
 
 // end of gameState object
 };
-
 // load in a word with the page
 var gameWord = gameState.chooseRandomWord();
 var lettersArray = gameState.lettersGetter(gameWord);
 var nArray = gameState.textPlaceHolder(lettersArray);
-gameState.textPlaceHolder(nArray);
-
+// var playerInput = gameState.
 // Old textPlaceHolder will remove soon
 // // textPlaceHolder takes in lettersArray and then for each letter, or element in the array
 // // it should....
