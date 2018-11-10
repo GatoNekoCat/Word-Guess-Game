@@ -9,14 +9,14 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
         wins: 0,
         gameStateOn: false,
         playerGuessesLeft: 12,
-        lettersGuessed: "",
+        lettersGuessed: [],
         wordBankArray: [
             "son goku","bulma","master roshi",
             "krillin","piccolo","son gohan","tenshinhan", "namek", "freiza",
             "bardock", "vegeta", "brolly", "paragus", "videl"
             ],
         randWord: "",
-        lettersArray: [],
+        wrongLttrz: [],
         playerLetterGuess: "",
 
     // =================================================================
@@ -61,9 +61,12 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     // textField stores the html element
     textField: document.getElementById("textField"),
     textDisplay:function(textToDisplay) {
-        // This is refreshing the page I think
         textField.innerHTML = ("<h1>" + textToDisplay.join(" ") + "</h1>");
-        // preventDefault should prevent this 
+    },
+    // Wrong letter field
+    wrongLettersField: document.getElementById("wrongLetters"),
+    wrongLettersDisplay: function(textToDisplay) {
+        this.wrongLettersField.innerHTML =(textToDisplay.join(" "));
     },
      
     textArrayToString: function (tArray) {
@@ -90,23 +93,22 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
                 alert("Success");
             // Push the playerLetterGuess into the the nArray where
             for (let i = nArray.length - 1; i >= 0; i--){
+                // If there is a match update nArray
                 if(gameWord[i] === this.playerLetterGuess){
                 nArray.splice(i, 1, this.playerLetterGuess );
                 this.textDisplay(nArray);
+                } else {
+                    this.playerGuessesLeft--;
+                    this.wrongLttrz.push(this.playerLetterGuess);
+                    this.wrongLettersDisplay(this.wrongLttrz);
+                };
+                // If guessesLeft = 0 game over
+                if(this.playerGuessesLeft === 0){
+                    alert("game over");
                 }
             }
             }
-
             
-            // lettersArray.forEach(function(ltr) {
-            //     console.log(ltr);
-            //     if(playerLetterGuess === ltr){
-            //         alert("Success");
-            //     }
-                
-            // });
-
-            // If there is a match update nArray
 
             // If no match decrease playerGuessesLeft
 
@@ -129,7 +131,6 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
 var gameWord = gameState.chooseRandomWord();
 var lettersArray = gameState.lettersGetter(gameWord);
 var nArray = gameState.textPlaceHolder(lettersArray);
-var playerInput = gameState.getPlayerInput();
 // var playerInput = gameState.
 // Old textPlaceHolder will remove soon
 // // textPlaceHolder takes in lettersArray and then for each letter, or element in the array
