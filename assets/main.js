@@ -1,6 +1,8 @@
 // guessButton listener
 document.getElementById("guessButton").onclick = function() {gameState.getPlayerInput()};
-//  Load a random word on load
+
+// Some global variables
+
 
 // gameState Object===========    
 
@@ -15,9 +17,31 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
             "krillin","piccolo","son gohan","tenshinhan", "namek", "freiza",
             "bardock", "vegeta", "brolly", "paragus", "videl"
             ],
-        randWord: "",
         wrongLttrz: [],
         playerLetterGuess: "",
+        gameWord: "",
+        lettersArray: [],
+        nArray: [],
+        
+
+        // An init method to change variables back for new game
+
+        init: function(){
+            this.playerGuessesLeft = 12;
+            this.lettersGuessed = [];
+            this.wrongLttrz = [];
+            this.gameWord = this.chooseRandomWord();
+            this.lettersArray = this.lettersGetter(this.gameWord);
+            this.textDisplay(this.lettersArray);
+            this.nArray = this.textPlaceHolder(this.lettersArray);
+            this.playerLetterGuess = "";
+            this.wrongLttrz = [];
+            this.wrongLettersDisplay(this.wrongLttrz);
+            
+            
+
+
+        },
 
     // =================================================================
 
@@ -90,29 +114,34 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
             
             // Check input against lettersArray
             if (gameWord.indexOf(this.playerLetterGuess) >= 0){
-                alert("Success");
             // Push the playerLetterGuess into the the nArray where
-            for (let i = nArray.length - 1; i >= 0; i--){
+                for (let i = nArray.length - 1; i >= 0; i--){
                 // If there is a match update nArray
                 if(gameWord[i] === this.playerLetterGuess){
                 nArray.splice(i, 1, this.playerLetterGuess );
-                this.textDisplay(nArray);
-                } else {
+                this.textDisplay(nArray);                    
+                }                       
+                };
+                if(nArray === gameWord) {
+                    alert("You win");
+                }
+
+            }else {
                     this.playerGuessesLeft--;
                     this.wrongLttrz.push(this.playerLetterGuess);
                     this.wrongLettersDisplay(this.wrongLttrz);
-                };
-                // If guessesLeft = 0 game over
-                if(this.playerGuessesLeft === 0){
-                    alert("game over");
-                }
-            }
-            }
+            };
+            // If guessesLeft = 0 game over
+            if(this.playerGuessesLeft === 0){
+                alert("game over");
+                this.init();
+            };
+            
+        },
             
 
             // If no match decrease playerGuessesLeft
 
-        },
     
         // After getting input the game should check whether the input matches a letter 
         // in the lettersArray   
