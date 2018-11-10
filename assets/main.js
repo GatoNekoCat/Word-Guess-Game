@@ -61,8 +61,9 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
     // textField stores the html element
     textField: document.getElementById("textField"),
     textDisplay:function(textToDisplay) {
+        // This is refreshing the page I think
         textField.innerHTML = ("<h1>" + textToDisplay.join(" ") + "</h1>");
-
+        // preventDefault should prevent this 
     },
      
     textArrayToString: function (tArray) {
@@ -90,7 +91,8 @@ document.getElementById("guessButton").onclick = function() {gameState.getPlayer
             // Push the playerLetterGuess into the the nArray where
             for (let i = nArray.length - 1; i >= 0; i--){
                 if(gameWord[i] === this.playerLetterGuess){
-                    nArray.splice(i, 1, this.playerLetterGuess );
+                nArray.splice(i, 1, this.playerLetterGuess );
+                this.textDisplay(nArray);
                 }
             }
             }
